@@ -1,15 +1,15 @@
 <?php
-include "../api/db.php";  // adjust path if needed
+// Database connection info
+$host = "localhost";       // MySQL server host
+$user = "root";            // MySQL username (default XAMPP)
+$password = "";            // MySQL password (default XAMPP is empty)
+$dbname = "your_database_name";  // Change this to your actual database name
 
-$sql = "SHOW TABLES";
-$result = $conn->query($sql);
+// Create connection
+$conn = new mysqli($host, $user, $password, $dbname);
 
-if ($result) {
-    echo "Connected successfully. Tables in the database:<br>";
-    while ($row = $result->fetch_array()) {
-        echo $row[0] . "<br>";
-    }
-} else {
-    echo "Error: " . $conn->error;
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
